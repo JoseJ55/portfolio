@@ -1,4 +1,4 @@
-import { Header, Navbar } from '../../components';
+import { Header, Navbar, Projects } from '../../components';
 
 
 export const Home = () => {
@@ -34,8 +34,9 @@ export const Home = () => {
                     </div>
                 </div>
 
-                <div className='relative w-full h-full z-[1]'>
+                <div className='relative w-full h-full z-[1] flex overflow-auto overflow-y-hidden'>
                     <Header />
+                    <Projects />
                 </div>
             </Navbar>
         </div>
