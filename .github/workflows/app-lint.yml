@@ -3,19 +3,15 @@ name: App Lint
 on:
   push:
     paths:
-      - src/**
-      - src/
+      - 'src/**'
   pull_request:
+    types: [opened, reopened, synchronize]
     paths:
-      - src/**
-      - src/
+      - 'src/**'
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./
 
     steps:
       - uses: actions/checkout@v3
