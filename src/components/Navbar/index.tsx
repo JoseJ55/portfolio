@@ -7,13 +7,16 @@ import LinkedIn from '../../assets/linkedin.svg?react';
 
 interface NavbarInterface {
     children: React.ReactNode;
+    scrollToHome: () => void;
+    scrollToProjects: () => void;
 }
 
 interface LinkInterface {
     title: string;
+    scrollTo: () => void;
 }
 
-const Link = ({ title }: LinkInterface) => {
+const Link = ({ title, scrollTo }: LinkInterface) => {
     const bgMotion = {
         rest: { opacity: 0, ease: 'easeOut', duration: 0.2, type: 'tween' },
         hover: {
@@ -32,6 +35,7 @@ const Link = ({ title }: LinkInterface) => {
             initial='rest'
             whileHover='hover'
             animate='rest'
+            onClick={scrollTo}
             className='flex items-center justify-center relative max-w-[80px] w-full h-[80px] hover:cursor-pointer'
         >
             <p className='mx-4 z-[1]'>{title}</p>
@@ -43,15 +47,15 @@ const Link = ({ title }: LinkInterface) => {
     );
 };
 
-export const Navbar = ({ children }: NavbarInterface) => {
+export const Navbar = ({ children, scrollToHome, scrollToProjects }: NavbarInterface) => {
     return (
         <div className='flex flex-col w-full h-full'>
             <div className='bg-main w-full flex justify-between items-center'>
                 <ul className='flex items-center gap-10 px-20 text-text text-lg'>
-                    <Link title='Home' />
-                    <Link title='Projects' />
-                    <Link title='About' />
-                    <Link title='Contact' />
+                    <Link title='Home' scrollTo={scrollToHome} />
+                    <Link title='Projects' scrollTo={scrollToProjects} />
+                    <Link title='About' scrollTo={() => null} />
+                    <Link title='Contact' scrollTo={() => null} />
                 </ul>
 
                 <div className='px-20 flex justify-start items-center gap-10 text-white'>

@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { forwardRef } from 'react';
 
 import { ProjectsData } from './constants';
 
@@ -173,12 +174,12 @@ const Card = ({ project }: CardInterface) => {
     );
 };
 
-export const Projects = () => {
+export const Projects = forwardRef<HTMLDivElement, unknown>((_, ref) => {
     return (
-        <div className='h-full w-fit min-w-screen flex justify-start items-center flex-1'>
+        <div ref={ref} className='h-full w-fit min-w-screen flex justify-start items-center flex-1'>
             {ProjectsData.map(project => (
                 <Card project={project} />
             ))}
         </div>
     );
-};
+});
