@@ -1,9 +1,6 @@
 name: App Lint
 
 on:
-  push:
-    paths:
-      - 'src/**'
   pull_request:
     types: [opened, reopened, synchronize]
     paths:
