@@ -1,8 +1,14 @@
+import { forwardRef } from 'react';
+
 import ForwardArrow from '../../assets/foward-arrow.svg?react';
 
-export function Header() {
+interface HeaderInterface {
+  scrollTo: () => void;
+}
+
+export const  Header = forwardRef<HTMLDivElement, HeaderInterface>(({ scrollTo }, ref) => {
   return (
-    <div className='w-screen min-w-screen h-full relative'>
+    <div ref={ref} className='w-screen min-w-screen h-full relative'>
       <div className='absolute top-1/2 left-1/5 -translate-y-full text-text text-8xl'>
         <h2 className='text-shadow-[4px_0px_1px] text-shadow-accent'>Hello, I am</h2>
         <h2 className='text-shadow-[4px_0px_1px] text-shadow-accent'>Jose</h2>
@@ -15,6 +21,7 @@ export function Header() {
             shadow-[0_0px_15px] hover:shadow-[0_0px_20px] shadow-secondary bg-secondary transition-all
           `
         }
+        onClick={scrollTo}
       >
         <ForwardArrow
           className={
@@ -27,4 +34,4 @@ export function Header() {
       </div>
     </div>
   );
-};
+});

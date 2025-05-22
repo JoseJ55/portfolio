@@ -1,5 +1,5 @@
 import { animate, motion, useMotionValue, useScroll } from 'motion/react';
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { Header, Navbar, Projects } from '../../components';
 
@@ -9,9 +9,35 @@ export const Home = () => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const animationRef = useRef<ReturnType<typeof animate> | null>(null);
 
+    const homeRef = useRef<HTMLDivElement | null>(null);
+    const projectsRef = useRef<HTMLDivElement | null>(null);
+
     const { scrollXProgress } = useScroll({ container: containerRef });
 
     const scrollX = useMotionValue(0);
+
+    const scrollTo = (scrollRef: React.RefObject<HTMLDivElement | null>) => {
+        const container = containerRef.current;
+        const target = scrollRef.current;
+        if (!container || !target) return;
+
+        const targetLeft = target.offsetLeft - container.offsetLeft;;
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        const clampedTarget = Math.min(targetLeft, maxScroll);
+
+        animationRef.current?.stop();
+        scrollX.set(container.scrollLeft);
+
+        animationRef.current = animate(scrollX, clampedTarget, {
+            type: 'spring',
+            stiffness: 100,
+            damping: 25,
+            restDelta: 0.5,
+            onUpdate: (latest) => {
+                container.scrollLeft = latest;
+            },
+        });
+    };
 
     useEffect(() => {
         const container = containerRef.current;
@@ -56,7 +82,10 @@ export const Home = () => {
 
     return (
         <div className='w-screen h-screen bg-black relative'>
-            <Navbar>
+            <Navbar
+                scrollToHome={() => scrollTo(homeRef)}
+                scrollToProjects={() => scrollTo(projectsRef)}
+            >
                 <div className='absolute w-full h-full z-[0]'>
                     <div className='relative w-full h-full'>
                         <div
@@ -95,8 +124,8 @@ export const Home = () => {
                         `
                     }
                 >
-                    <Header />
-                    <Projects />
+                    <Header ref={homeRef} scrollTo={() => scrollTo(projectsRef)} />
+                    <Projects ref={projectsRef} />
                 </motion.div>
 
                 <motion.div
