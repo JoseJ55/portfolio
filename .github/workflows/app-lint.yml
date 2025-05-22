@@ -18,8 +18,6 @@ jobs:
 
       - name: Set up Node
         uses: actions/setup-node@v3
-        with:
-          node-version:21.x
 
       - name: Install deps
         run: npm install
