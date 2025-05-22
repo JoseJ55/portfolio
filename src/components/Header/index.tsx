@@ -1,11 +1,11 @@
-import FowardArrow from '../../assets/foward-arrow.svg?react';
+import ForwardArrow from '../../assets/foward-arrow.svg?react';
 
 export function Header() {
   return (
     <div className='w-screen h-full relative'>
       <div className='absolute top-1/2 left-1/5 -translate-y-full text-text text-8xl'>
-        <h2>Hello, I am</h2>
-        <h2>Jose</h2>
+        <h2 className='text-shadow-[4px_0px_1px] text-shadow-accent'>Hello, I am</h2>
+        <h2 className='text-shadow-[4px_0px_1px] text-shadow-accent'>Jose</h2>
       </div>
 
       <div
@@ -16,7 +16,7 @@ export function Header() {
           `
         }
       >
-        <FowardArrow
+        <ForwardArrow
           className={
             `
               w-[25px] h-[25px] text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
