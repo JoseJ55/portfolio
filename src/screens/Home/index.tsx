@@ -1,11 +1,11 @@
-import { Navbar } from '../../components';
+import { Header, Navbar } from '../../components';
 
 
 export const Home = () => {
     return (
         <div className='w-screen h-screen bg-black relative'>
             <Navbar>
-                hello
+                <Header />
             </Navbar>
         </div>
     );

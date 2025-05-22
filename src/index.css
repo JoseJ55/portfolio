@@ -7,6 +7,18 @@
   --color-accent: rgba(83, 152, 190, 1);
   --color-accent-fade: rgba(83, 152, 190, 0.5);
   --color-text: rgba(224, 226, 219, 1); /* #e0e2db */
+
+  --animate-bounce-right: bounce-right 1s ease-in-out infinite;
+  @keyframes bounce-right {
+    0%, 100% {
+      transform: translateX(25%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: none;
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
 }
 
 :root {
