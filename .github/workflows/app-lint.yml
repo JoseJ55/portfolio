@@ -3,12 +3,9 @@ name: App Lint
 on:
   push:
     paths:
-      - src/**
-      - src/
+      - 'src/**'
   pull_request:
-    paths:
-      - src/**
-      - src/
+    types: [opened, reopened]
 
 jobs:
   test:
