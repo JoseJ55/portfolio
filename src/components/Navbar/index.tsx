@@ -67,7 +67,7 @@ export const Navbar = ({ children }: NavbarInterface) => {
                 </div>
             </div>
 
-            <div className='flex-1 bg-main'>
+            <div className='flex-1 bg-main relative'>
                 {children}
             </div>
         </div>
