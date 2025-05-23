@@ -1,7 +1,7 @@
 import { animate, motion, useMotionValue, useScroll } from 'motion/react';
 import React, { useEffect, useRef } from 'react';
 
-import { Header, Navbar, Projects } from '../../components';
+import { About, Header, Navbar, Projects } from '../../components';
 
 
 export const Home = () => {
@@ -11,6 +11,7 @@ export const Home = () => {
 
     const homeRef = useRef<HTMLDivElement | null>(null);
     const projectsRef = useRef<HTMLDivElement | null>(null);
+    const aboutRef = useRef<HTMLDivElement | null>(null);
 
     const { scrollXProgress } = useScroll({ container: containerRef });
 
@@ -85,6 +86,8 @@ export const Home = () => {
             <Navbar
                 scrollToHome={() => scrollTo(homeRef)}
                 scrollToProjects={() => scrollTo(projectsRef)}
+                scrollToAbout={() => scrollTo(aboutRef)}
+                scrollToContact={() => null}
             >
                 <div className='absolute w-full h-full z-[0]'>
                     <div className='relative w-full h-full'>
@@ -126,6 +129,7 @@ export const Home = () => {
                 >
                     <Header ref={homeRef} scrollTo={() => scrollTo(projectsRef)} />
                     <Projects ref={projectsRef} />
+                    <About ref={aboutRef} />
                 </motion.div>
 
                 <motion.div

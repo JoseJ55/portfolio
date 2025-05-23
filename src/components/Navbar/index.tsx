@@ -9,6 +9,8 @@ interface NavbarInterface {
     children: React.ReactNode;
     scrollToHome: () => void;
     scrollToProjects: () => void;
+    scrollToAbout: () => void;
+    scrollToContact: () => void;
 }
 
 interface LinkInterface {
@@ -47,15 +49,21 @@ const Link = ({ title, scrollTo }: LinkInterface) => {
     );
 };
 
-export const Navbar = ({ children, scrollToHome, scrollToProjects }: NavbarInterface) => {
+export const Navbar = ({
+    children,
+    scrollToHome,
+    scrollToProjects,
+    scrollToAbout,
+    scrollToContact
+}: NavbarInterface) => {
     return (
         <div className='flex flex-col w-full h-full'>
             <div className='bg-main w-full flex justify-between items-center'>
                 <ul className='flex items-center gap-10 px-20 text-text text-lg'>
                     <Link title='Home' scrollTo={scrollToHome} />
                     <Link title='Projects' scrollTo={scrollToProjects} />
-                    <Link title='About' scrollTo={() => null} />
-                    <Link title='Contact' scrollTo={() => null} />
+                    <Link title='About' scrollTo={scrollToAbout} />
+                    <Link title='Contact' scrollTo={scrollToContact} />
                 </ul>
 
                 <div className='px-20 flex justify-start items-center gap-10 text-white'>
