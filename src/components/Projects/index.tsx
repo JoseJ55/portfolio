@@ -119,7 +119,7 @@ const Card = ({ project }: CardInterface) => {
     }, []);
 
     return (
-        <div ref={containerRef} className='h-full min-w-screen flex justify-start items-center flex-1 relative'>
+        <div ref={containerRef} className='h-full max-h-screen w-screen flex justify-start items-center relative'>
             <div className='sticky left-0 overflow-hidden w-1/5 h-full z-[1]'>
                 <img
                     ref={backgroundRef}
@@ -176,7 +176,7 @@ const Card = ({ project }: CardInterface) => {
 
 export const Projects = forwardRef<HTMLDivElement, unknown>((_, ref) => {
     return (
-        <div ref={ref} className='h-full w-fit min-w-screen flex justify-start items-center flex-1'>
+        <div ref={ref} className='h-full w-max flex items-center relative'>
             {ProjectsData.map(project => (
                 <Card project={project} />
             ))}
