@@ -1,8 +1,10 @@
-import { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 
 import { aboutText, skillIcons } from './constants';
 
+import Career from '../../assets/career.svg?react';
 import Profile from '../../assets/profile-500px.png';
+import School from '../../assets/school.svg?react';
 
 interface SkillInterface {
     name: string;
@@ -14,6 +16,12 @@ interface IconInterface {
     width: number;
     height: number;
     updateSkill: () => void;
+}
+
+interface ExperienceCardInterface {
+    title: string;
+    Icon: React.ReactNode;
+    year: string;
 }
 
 const Icon = ({ skill, width, height, updateSkill }: IconInterface) => {
@@ -79,7 +87,7 @@ const Skills = () => {
     }, [currentSkill]);
 
   return (
-    <div className='min-w-1/2 h-full flex items-start'>
+    <div className='min-w-[50vw] h-full flex items-start'>
         <div className='text-text text-3xl w-1/5 h-3/4 flex justify-center items-center'>
             <p className='-rotate-90 text-center'>My Skills</p>
         </div>
@@ -111,11 +119,23 @@ const Skills = () => {
   );
 };
 
+const ExperienceCard = ({ title, Icon, year }: ExperienceCardInterface) => {
+    return (
+        <div className='w-full text-text text-xl flex justify-between items-center'>
+            <div className='flex items-center gap-4'>
+                {Icon}
+                <p>{title}</p>
+            </div>
+
+            <p>{year}</p>
+        </div>
+    );
+};
 
 export const About = forwardRef<HTMLDivElement, unknown>((_, ref) => {
     return (
-        <div ref={ref} className='w-fit min-w-screen h-full flex justify-center py-20 relative'>
-            <div className='w-fit min-w-screen h-full flex justify-center relative gap-20'>
+        <div ref={ref} className='w-max h-full flex justify-center py-20 relative'>
+            <div className='min-w-screen h-full flex justify-center relative gap-20'>
                 <div className='flex flex-col items-center gap-10'>
                     <div
                         className={
@@ -138,6 +158,38 @@ export const About = forwardRef<HTMLDivElement, unknown>((_, ref) => {
             </div>
 
             <Skills />
+
+            <div className='min-w-[50vw] h-full flex pl-36'>
+                <div className='text-text text-3xl w-1/5 h-3/4 flex justify-center items-center'>
+                    <p className='-rotate-90 text-center text-nowrap'>Experience/Education</p>
+                </div>
+
+                <div className='w-4/5 h-3/4 flex flex-col justify-center items-center'>
+                    <ExperienceCard
+                        title='Victor Valley College'
+                        Icon={<School className='w-[50px] h-[50px]' />}
+                        year='2020'
+                    />
+                    <div className='w-full h-[2px] bg-text my-6' />
+                    <ExperienceCard
+                        title='University of California Riverside'
+                        Icon={<School className='w-[50px] h-[50px]' />}
+                        year='2021'
+                    />
+                    <div className='w-full h-[2px] bg-text my-6' />
+                    <ExperienceCard
+                        title='Cal State Fullerton'
+                        Icon={<School className='w-[50px] h-[50px]' />}
+                        year='2023'
+                    />
+                    <div className='w-full h-[2px] bg-text my-6' />
+                    <ExperienceCard
+                        title='FOMO Social .inc'
+                        Icon={<Career className='w-[50px] h-[50px]' />}
+                        year='2021 - now'
+                    />
+                </div>
+            </div>
         </div>
     );
 });
