@@ -1,7 +1,7 @@
 import { animate, motion, useMotionValue, useScroll } from 'motion/react';
 import React, { useEffect, useRef } from 'react';
 
-import { About, Contact, Header, Navbar, Projects } from '../../components';
+import { About, Contact, Footer, Header, Navbar, Projects } from '../../components';
 
 
 export const Home = () => {
@@ -132,6 +132,7 @@ export const Home = () => {
                     <Projects ref={projectsRef} />
                     <About ref={aboutRef} />
                     <Contact ref={contactRef} />
+                    <Footer />
                 </motion.div>
 
                 <motion.div
