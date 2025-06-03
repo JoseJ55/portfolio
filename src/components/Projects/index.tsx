@@ -61,7 +61,7 @@ const Anchor = ({ title, link, icon }: AnchorInterface) => {
             target='_blank'
             rel='noopener noreferrer'
             href={link}
-            >
+        >
             <p className='z-[3] relative'>{title}</p>
             {icon}
             <motion.div
