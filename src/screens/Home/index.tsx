@@ -23,22 +23,30 @@ export const Home = () => {
         const target = scrollRef.current;
         if (!container || !target) return;
 
-        const targetLeft = target.offsetLeft - container.offsetLeft;;
-        const maxScroll = container.scrollWidth - container.clientWidth;
-        const clampedTarget = Math.min(targetLeft, maxScroll);
+        const isMobile = window.innerWidth <= 640;
 
-        animationRef.current?.stop();
-        scrollX.set(container.scrollLeft);
+        if (isMobile) {
+            if (scrollRef.current) {
+                scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            const targetLeft = target.offsetLeft - container.offsetLeft;;
+            const maxScroll = container.scrollWidth - container.clientWidth;
+            const clampedTarget = Math.min(targetLeft, maxScroll);
 
-        animationRef.current = animate(scrollX, clampedTarget, {
-            type: 'spring',
-            stiffness: 100,
-            damping: 25,
-            restDelta: 0.5,
-            onUpdate: (latest) => {
-                container.scrollLeft = latest;
-            },
-        });
+            animationRef.current?.stop();
+            scrollX.set(container.scrollLeft);
+
+            animationRef.current = animate(scrollX, clampedTarget, {
+                type: 'spring',
+                stiffness: 100,
+                damping: 25,
+                restDelta: 0.5,
+                onUpdate: (latest) => {
+                    container.scrollLeft = latest;
+                },
+            });
+        }
     };
 
     useEffect(() => {
@@ -47,6 +55,8 @@ export const Home = () => {
 
         const handleWheel = (e: WheelEvent) => {
             e.preventDefault();
+
+            if(window.innerWidth < 640) return;
 
             velocityRef.current += e.deltaY * 1.6;
 
@@ -90,7 +100,7 @@ export const Home = () => {
                 scrollToAbout={() => scrollTo(aboutRef)}
                 scrollToContact={() => scrollTo(contactRef)}
             >
-                <div className='absolute w-full h-full z-[0]'>
+                <div className='fixed top-0 left-0 w-screen h-screen z-[0] overflow-x-hidden'>
                     <div className='relative w-full h-full'>
                         <motion.div
                             className={
@@ -156,7 +166,8 @@ export const Home = () => {
                     ref={containerRef}
                     className={
                         `
-                            relative w-full h-full z-[1] flex overflow-y-hidden transition-all duration-100
+                            relative w-full h-full z-[1] flex flex-col sm:flex-row overflow-y-auto sm:overflow-y-hidden 
+                            overflow-x-hidden sm:overflow-x-auto transition-all duration-100 
                             [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]
                         `
                     }
@@ -172,8 +183,8 @@ export const Home = () => {
                     style={{ scaleX: scrollXProgress }}
                     className={
                         `
-                            fixed bottom-8 left-0 w-full h-[10px] bg-accent/80 origin-center z-40 transition-all 
-                            duration-100 rounded-3xl
+                            hidden sm:block fixed bottom-8 left-0 w-full h-[10px] bg-accent/80 origin-center z-40 
+                            transition-all duration-100 rounded-3xl
                         `
                     }
                 />

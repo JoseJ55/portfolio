@@ -57,16 +57,16 @@ export const Navbar = ({
     scrollToContact
 }: NavbarInterface) => {
     return (
-        <div className='flex flex-col w-full h-full'>
-            <div className='bg-main w-full flex justify-between items-center'>
-                <ul className='flex items-center gap-10 px-20 text-text text-lg'>
+        <div className='flex flex-col w-full h-max sm:h-screen relative'>
+            <div className='bg-main w-full sticky top-0 flex flex-col sm:flex-row justify-between items-center z-50'>
+                <ul className='flex items-center gap-2 sm:gap-10 px-4 sm:px-20 text-text text-lg relative'>
                     <Link title='Home' scrollTo={scrollToHome} />
                     <Link title='Projects' scrollTo={scrollToProjects} />
                     <Link title='About' scrollTo={scrollToAbout} />
                     <Link title='Contact' scrollTo={scrollToContact} />
                 </ul>
 
-                <div className='px-20 flex justify-start items-center gap-10 text-white'>
+                <div className='px-20 hidden sm:flex justify-start items-center gap-10 text-white'>
                     <a target='_blank' rel='noreferrer' href='mailto:josejimenez826@gmail.com'>
                         <Mail className='w-[25px] h-[25px] hover:text-accent' />
                     </a>
@@ -79,7 +79,7 @@ export const Navbar = ({
                 </div>
             </div>
 
-            <div className='flex-1 bg-main relative'>
+            <div className='flex-1 bg-main relative overflow-hidden'>
                 {children}
             </div>
         </div>

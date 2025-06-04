@@ -23,12 +23,17 @@ export const Contact = forwardRef<HTMLDivElement, unknown>((_, ref) => {
     };
 
     return (
-        <div ref={ref} className='min-w-[70vw] h-full flex justify-center items-center'>
-            <form ref={form} onSubmit={handleSubmit} className='flex flex-col w-1/3 gap-10 items-center'>
+        <div ref={ref} className='sm:min-w-[700px] h-full flex justify-center items-center xl:mx-32'>
+            <form
+                ref={form}
+                onSubmit={handleSubmit}
+                className='flex flex-col w-5/6 sm:w-1/2 xl:w-2/3 gap-6 sm:gap-10 items-center'
+            >
                 <label
                     className={
                         `
-                            text-text text-4xl text-nowrap -rotate-12 text-shadow-[0px_2px_1px] text-shadow-accent mb-20
+                            text-text text-2xl sm:text-3xl xl:text-4xl text-nowrap -rotate-12 text-shadow-[0px_2px_1px] 
+                            text-shadow-accent mb-10 sm:mb-20
                         `
                     }
                 >

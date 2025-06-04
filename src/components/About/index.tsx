@@ -87,16 +87,23 @@ const Skills = () => {
     }, [currentSkill]);
 
   return (
-    <div className='min-w-[50vw] h-full flex items-start'>
-        <div className='text-text text-3xl w-1/5 h-3/4 flex justify-center items-center'>
-            <p className='-rotate-90 text-center'>My Skills</p>
+    <div
+        className={
+            `
+                min-w-screen sm:min-w-[700px] lg:min-w-[50vw] min-h-[600px] h-full flex flex-col sm:flex-row 
+                items-center sm:items-start
+            `
+        }
+    >
+        <div className='text-text text-3xl w-full sm:w-1/5 h-1/6 sm:h-3/4 flex justify-center items-center'>
+            <p className='rotate-0 sm:-rotate-90 text-center'>My Skills</p>
         </div>
 
-        <div ref={skillsRef} className='relative w-4/5 h-3/4'>
+        <div ref={skillsRef} className='relative w-4/5 h-5/6 min-h-[500px] sm:h-3/4'>
             <p
                 className={
                     `
-                        absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-accent text-7xl 
+                        absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-accent text-5xl sm:text-7xl 
                         transition-all duration-300 font-semibold
                         ${currentSkill !== '' ? 'opacity-100' : 'opacity-0'}
                     `
@@ -121,8 +128,8 @@ const Skills = () => {
 
 const ExperienceCard = ({ title, Icon, year }: ExperienceCardInterface) => {
     return (
-        <div className='w-full text-text text-xl flex justify-between items-center'>
-            <div className='flex items-center gap-4'>
+        <div className='w-full text-text text-lg sm:text-xl flex justify-between items-center'>
+            <div className='flex items-center gap-2 sm:gap-4'>
                 {Icon}
                 <p>{title}</p>
             </div>
@@ -134,9 +141,19 @@ const ExperienceCard = ({ title, Icon, year }: ExperienceCardInterface) => {
 
 export const About = forwardRef<HTMLDivElement, unknown>((_, ref) => {
     return (
-        <div ref={ref} className='w-max h-full flex justify-center py-20 relative'>
-            <div className='min-w-screen h-full flex justify-center relative gap-20'>
-                <div className='flex flex-col items-center gap-10'>
+        <div
+            ref={ref}
+            className='w-full sm:w-max h-full flex flex-col sm:flex-row justify-center py-20 relative gap-20 sm:gap-0'
+        >
+            <div
+                className={
+                    `
+                        min-w-screen sm:min-w-[1000px] h-full flex flex-col sm:flex-row justify-center items-center 
+                        sm:items-start relative gap-10 sm:gap-20 mb-10 sm:mb-0
+                    `
+                }
+            >
+                <div className='flex flex-col items-center gap-4 sm:gap-10'>
                     <div
                         className={
                             `
@@ -150,7 +167,7 @@ export const About = forwardRef<HTMLDivElement, unknown>((_, ref) => {
                     <p className='text-text text-4xl'>Jose Jimenez</p>
                 </div>
 
-                <div className='w-1/3 h-3/4 flex flex-col items-center gap-4 text-text'>
+                <div className='w-4/5 sm:w-1/3 h-3/4 flex flex-col items-center gap-4 text-text'>
                     {aboutText.map((text) => (
                         <p>{text}</p>
                     ))}
@@ -159,30 +176,44 @@ export const About = forwardRef<HTMLDivElement, unknown>((_, ref) => {
 
             <Skills />
 
-            <div className='min-w-[50vw] h-full flex pl-36'>
-                <div className='text-text text-3xl w-1/5 h-3/4 flex justify-center items-center'>
-                    <p className='-rotate-90 text-center text-nowrap'>Experience/Education</p>
+            <div
+                className={
+                    `
+                        min-w-screen sm:min-w-[800px] lg:min-w-[50vw] h-full flex flex-col sm:flex-row pl-0 sm:pl-36 
+                        items-center sm:items-start
+                    `
+                }
+            >
+                <div
+                    className={
+                        `
+                            text-text text-3xl w-full sm:w-1/5 h-1/6 sm:h-3/4 mb-10 sm:mb-0 flex justify-center 
+                            items-center
+                        `
+                    }
+                >
+                    <p className='sm:-rotate-90 text-center text-nowrap'>Experience/Education</p>
                 </div>
 
-                <div className='w-4/5 h-3/4 flex flex-col justify-center items-center'>
+                <div className='w-11/12 sm:w-4/5 h-5/6 sm:h-3/4 flex flex-col justify-center items-center'>
                     <ExperienceCard
                         title='Victor Valley College'
                         Icon={<School className='w-[50px] h-[50px]' />}
                         year='2020'
                     />
-                    <div className='w-full h-[2px] bg-text my-6' />
+                    <div className='w-full h-[2px] bg-text my-4 sm:my-6' />
                     <ExperienceCard
                         title='University of California Riverside'
                         Icon={<School className='w-[50px] h-[50px]' />}
                         year='2021'
                     />
-                    <div className='w-full h-[2px] bg-text my-6' />
+                    <div className='w-full h-[2px] bg-text my-4 sm:my-6' />
                     <ExperienceCard
                         title='Cal State Fullerton'
                         Icon={<School className='w-[50px] h-[50px]' />}
                         year='2023'
                     />
-                    <div className='w-full h-[2px] bg-text my-6' />
+                    <div className='w-full h-[2px] bg-text my-4 sm:my-6' />
                     <ExperienceCard
                         title='FOMO Social .inc'
                         Icon={<Career className='w-[50px] h-[50px]' />}
